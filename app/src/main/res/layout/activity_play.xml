@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayActivity">
+    <Button
+        android:id="@+id/answerD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Answer D"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="15dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answerC"
+        android:layout_above="@+id/answerD"
+        android:text="Answer C"
+        android:layout_marginHorizontal="10dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answerB"
+        android:layout_above="@+id/answerC"
+        android:text="Answer B"
+        android:layout_marginHorizontal="10dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answerA"
+        android:layout_above="@+id/answerB"
+        android:text="Answer A"
+        android:layout_marginHorizontal="10dp" />
+    <TextView
+        android:id="@+id/countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:id="@+id/thisQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="20dp"
+        android:layout_margin="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown"
+        android:text="THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp"/>
+
+</RelativeLayout>
