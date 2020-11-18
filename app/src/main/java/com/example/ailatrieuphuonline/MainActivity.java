@@ -1,33 +1,73 @@
 package com.example.ailatrieuphuonline;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.Objects;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    FirebaseDatabase database;
+    DatabaseReference users;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        database = FirebaseDatabase.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String idCurrentUser = firebaseUser.getUid();
+        users = database.getReference("Users");
 
         Button btPlay = findViewById(R.id.Play);
         Button btRanking = findViewById(R.id.Ranking);
         Button btSignout = findViewById(R.id.signout);
+
+//        Bundle extra = getIntent().getExtras();
+//        if(extra != null) {
+//            String id = extra.getString("idUser");
+//        }
+
+        Query post = database.getInstance().getReference().child("Users").orderByChild("id").equalTo(idCurrentUser);
+
+        post.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot user : snapshot.getChildren()) {
+                        // do something with the individual "user"
+                        Common.user = user.getValue(User.class);
+//                    Common.user();
+//                    User user = Common.user;
+                        String check = Common.user.getFullname();
+                        Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //Toast.makeText(MainActivity.this, "Lỗi không thể get được user", Toast.LENGTH_SHORT).show();
+                Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
+            }
+        });
+//        String id, String username, String email, String facebooklink, int score
+
 
         btPlay.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,16 +1,28 @@
 package com.example.ailatrieuphuonline;
 
 public class User {
+    private String id;
     private String username;
-    private String email;
-    private String facebooklink;
+    private String fullname;
+    private String facebook;
+    private int scores;
 
     public User() { }
 
-    public User(String username, String email, String facebooklink) {
+    public User(String id, String username, String fullname, String facebook, int scores ) {
         this.username = username;
-        this.email = email;
-        this.facebooklink = facebooklink;
+        this.fullname = fullname;
+        this.facebook = facebook;
+        this.scores = scores;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -21,19 +33,27 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    public String getFacebooklink() {
-        return facebooklink;
+    public String getFacebook() {
+        return facebook;
     }
 
-    public void setFacebooklink(String facebooklink) {
-        this.facebooklink = facebooklink;
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public int getScores() {
+        return scores;
+    }
+
+    public void setScores(int scores) {
+        this.scores = scores;
     }
 }

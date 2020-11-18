@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("username", username.toLowerCase());
                             hashMap.put("fullname", fullname);
                             hashMap.put("facebook","");
-                            hashMap.put("scores", "");
+                            hashMap.put("scores", 0);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

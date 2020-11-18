@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener{
 
     final static long INTERVAL = 1000; // 1 sec
@@ -20,6 +23,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     CountDownTimer mCountDown;
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
+    int modeplay = 1;
+    //public List<Question> questionList = new ArrayList<>();
 
 //    //Firebase
 //    FirebaseDatabase database;
@@ -46,6 +51,17 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         btC = findViewById(R.id.answerC);
         btD = findViewById(R.id.answerD);
 
+
+
+        Bundle extra = getIntent().getExtras();
+        if(extra != null) {
+            modeplay = extra.getInt("numbermodeplay");
+        }
+        switch (modeplay) {
+            case 1: { Common.questionList = Common.questionListEasy; break; }
+            case 2: { Common.questionList = Common.questionListNormal; break; }
+            case 3: { Common.questionList = Common.questionListHard; break; }
+        }
         btA.setOnClickListener(this);
         btB.setOnClickListener(this);
         btC.setOnClickListener(this);
@@ -144,4 +160,5 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         };
         showQuestion(++index);
     }
+
 }

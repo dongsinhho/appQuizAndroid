@@ -52,8 +52,11 @@ public class Done extends AppCompatActivity {
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
             //upload score to database
-//            question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId))
-//                    .setValue(new QuestionScore(String.format("%s_%s", Common.user.getUsername(),Common.modeId),Common.user.getUsername(),String.valueOf(score)));
+            question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId))
+                    .setValue(new QuestionScore(String.format("%s_%s", Common.user.getUsername(), Common.modeId), Common.user.getUsername(),
+                            String.valueOf(score)));
+
+            Common.user.setScores(Common.user.getScores()+score);
 
 
         }
