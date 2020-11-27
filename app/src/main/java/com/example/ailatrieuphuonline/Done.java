@@ -1,6 +1,5 @@
 package com.example.ailatrieuphuonline;
 
-import androidx.annotation.RestrictTo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class Done extends AppCompatActivity {
 
     Button btTryAgain;
@@ -19,6 +19,7 @@ public class Done extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference question_score;
+    DatabaseReference Users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class Done extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Scorce");
+        Users = database.getReference("Users");
 
         tvCorrect = findViewById(R.id.tvCorrect);
         tvScorce = findViewById(R.id.tvScore);
@@ -35,7 +37,7 @@ public class Done extends AppCompatActivity {
         btTryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Done.this, ModePlayActivity.class);
+                Intent intent = new Intent(Done.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -56,8 +58,8 @@ public class Done extends AppCompatActivity {
                     .setValue(new QuestionScore(String.format("%s_%s", Common.user.getUsername(), Common.modeId), Common.user.getUsername(),
                             String.valueOf(score)));
 
-            Common.user.setScores(Common.user.getScores()+score);
-
+            //FirebaseDatabase.getInstance().getReference("Users").updateChildren("scores", Common.user.getScores()+score);
+            Users.child(Common.user.getId()).child("scores").setValue(Common.user.getScores()+score);
 
         }
     }

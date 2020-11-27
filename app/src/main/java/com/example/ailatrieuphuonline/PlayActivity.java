@@ -158,7 +158,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
             }
         };
-        showQuestion(++index);
+        showQuestion(index);
     }
 
 }

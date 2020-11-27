@@ -24,8 +24,6 @@ public class ModePlayActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference questions;
 
-    String acb = " abccc ";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +41,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btHard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Common.modeId = "hard";
                 Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("numbermodeplay", 3);
@@ -54,6 +53,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btNormal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Common.modeId = "normal";
                 Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("numbermodeplay", 2);
@@ -65,6 +65,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btEasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Common.modeId = "easy";
                 Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("numbermodeplay", 1);
@@ -112,7 +113,6 @@ public class ModePlayActivity extends AppCompatActivity {
 
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
