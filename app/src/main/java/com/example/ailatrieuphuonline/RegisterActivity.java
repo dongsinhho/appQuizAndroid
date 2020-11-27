@@ -1,4 +1,4 @@
- com.example.ailatrieuphuonline;
+package com.example.ailatrieuphuonline;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

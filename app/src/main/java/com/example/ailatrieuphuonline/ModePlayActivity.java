@@ -32,19 +32,19 @@ public class ModePlayActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         questions = database.getReference("Questions");
 
-        loadQuestion(Common.modeId);
+//        loadQuestion(Common.modeId);
         btHard = findViewById(R.id.hard);
         btNormal = findViewById(R.id.normal);
         btEasy = findViewById(R.id.easy);
 
-        loadQuestion(Common.modeId);
+//        loadQuestion(Common.modeId);
         btHard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "hard";
-                Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
+                Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putInt("numbermodeplay", 3);
+                dataSend.putString("numbermodeplay", "3");
                 intent.putExtras(dataSend);
                 startActivity(intent);
                 finish();
@@ -54,9 +54,9 @@ public class ModePlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "normal";
-                Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
+                Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putInt("numbermodeplay", 2);
+                dataSend.putString("numbermodeplay", "2");
                 intent.putExtras(dataSend);
                 startActivity(intent);
                 finish();
@@ -66,9 +66,9 @@ public class ModePlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "easy";
-                Intent intent = new Intent(ModePlayActivity.this, PlayActivity.class);
+                Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putInt("numbermodeplay", 1);
+                dataSend.putString("numbermodeplay", "1");
                 intent.putExtras(dataSend);
                 startActivity(intent);
                 finish();
@@ -76,50 +76,50 @@ public class ModePlayActivity extends AppCompatActivity {
         });
     }
 
-    private void loadQuestion(String modeId) {
-
-        //clear list if have old question
-        if (Common.questionListEasy.size()>0)
-            Common.questionListEasy.clear();
-        if (Common.questionListNormal.size()>0)
-            Common.questionListNormal.clear();
-        if (Common.questionListHard.size()>0)
-            Common.questionListHard.clear();
-//        Collections.shuffle(Common.questionListEasy);
-//        Collections.shuffle(Common.questionListNormal);
-//        Collections.shuffle(Common.questionListHard);
-        questions.orderByChild("modeId").equalTo(modeId)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot postSnapshot : snapshot.getChildren())
-                        {
-                            Question ques = postSnapshot.getValue(Question.class);
-                            int check = Integer.parseInt(ques.levelId);
-                            switch (check) {
-                                case 1: {
-                                    Common.questionListEasy.add(ques);
-                                    break;
-                                }
-                                case 2: {
-                                    Common.questionListNormal.add(ques);
-                                    break;
-                                }
-                                case 3: {
-                                    Common.questionListHard.add(ques);
-                                    break;
-                                }
-                            }
-
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-        Collections.shuffle(Common.questionListEasy); //random
-        Collections.shuffle(Common.questionListHard); //random
-        Collections.shuffle(Common.questionListNormal); //random
-    }
+//    private void loadQuestion(String modeId) {
+//
+//        //clear list if have old question
+//        if (Common.questionListEasy.size()>0)
+//            Common.questionListEasy.clear();
+//        if (Common.questionListNormal.size()>0)
+//            Common.questionListNormal.clear();
+//        if (Common.questionListHard.size()>0)
+//            Common.questionListHard.clear();
+////        Collections.shuffle(Common.questionListEasy);
+////        Collections.shuffle(Common.questionListNormal);
+////        Collections.shuffle(Common.questionListHard);
+//        questions.orderByChild("modeId").equalTo(modeId)
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot postSnapshot : snapshot.getChildren())
+//                        {
+//                            Question ques = postSnapshot.getValue(Question.class);
+//                            int check = Integer.parseInt(ques.levelId);
+//                            switch (check) {
+//                                case 1: {
+//                                    Common.questionListEasy.add(ques);
+//                                    break;
+//                                }
+//                                case 2: {
+//                                    Common.questionListNormal.add(ques);
+//                                    break;
+//                                }
+//                                case 3: {
+//                                    Common.questionListHard.add(ques);
+//                                    break;
+//                                }
+//                            }
+//
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//        Collections.shuffle(Common.questionListEasy); //random
+//        Collections.shuffle(Common.questionListHard); //random
+//        Collections.shuffle(Common.questionListNormal); //random
+//    }
 }

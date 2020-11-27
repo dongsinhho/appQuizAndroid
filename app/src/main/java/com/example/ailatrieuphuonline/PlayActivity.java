@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,15 +54,15 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        Bundle extra = getIntent().getExtras();
-        if(extra != null) {
-            modeplay = extra.getInt("numbermodeplay");
-        }
-        switch (modeplay) {
-            case 1: { Common.questionList = Common.questionListEasy; break; }
-            case 2: { Common.questionList = Common.questionListNormal; break; }
-            case 3: { Common.questionList = Common.questionListHard; break; }
-        }
+//        Bundle extra = getIntent().getExtras();
+//        if(extra != null) {
+//            modeplay = extra.getInt("numbermodeplay");
+//        }
+//        switch (modeplay) {
+//            case 1: { Common.questionList = Common.questionListEasy; break; }
+//            case 2: { Common.questionList = Common.questionListNormal; break; }
+//            case 3: { Common.questionList = Common.questionListHard; break; }
+//        }
         btA.setOnClickListener(this);
         btB.setOnClickListener(this);
         btC.setOnClickListener(this);
@@ -76,11 +77,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         if (index < totalQuestion){  //vẫn còn câu hỏi trong danh sách
             Button clickedButton = (Button)v;
             if (clickedButton.getText().equals(Common.questionList.get(index).correctAnswer)){
-                switch (Integer.parseInt(Common.questionList.get(index).levelId)) {
-                    case 01: { score += 10; break; }
-                    case 02: { score += 20; break; }
-                    case 03: { score += 30; break; }
-                }
+//                switch (Integer.parseInt(Common.questionList.get(index).levelId)) {
+//                    case 01: { score += 10; break; }
+//                    case 02: { score += 20; break; }
+//                    case 03: { score += 30; break; }
+//                }
+                int tempScore = Integer.parseInt(Common.modeId) * 10;
+                score += tempScore;
                 correctAnswer++;
                 showQuestion(++index);
             } else {
@@ -125,24 +128,23 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-
         totalQuestion = Common.questionList.size();
         mCountDown = new CountDownTimer(TIMEOUT,INTERVAL) {
             @Override
             public void onTick(long minis) {
-//                if (timeValue == 16) {
-//                    Intent intent = new Intent(PlayActivity.this, Done.class );
-//                    Bundle dataSend = new Bundle();
-//                    dataSend.putInt("SCORE", score);
-//                    dataSend.putInt("TOTAL", totalQuestion);
-//                    dataSend.putInt("CORRECT", correctAnswer);
-//                    intent.putExtras(dataSend);
-//                    startActivity(intent);
-//                    finish();
-//                }
                 timeValue++;
                 tvCountDown.setText(timeValue+"");
-
+                Log.e("check", "savedInstanceState is null");
+                if (timeValue == 16) {
+                    Intent intent = new Intent(PlayActivity.this, Done.class );
+                    Bundle dataSend = new Bundle();
+                    dataSend.putInt("SCORE", score);
+                    dataSend.putInt("TOTAL", totalQuestion);
+                    dataSend.putInt("CORRECT", correctAnswer);
+                    intent.putExtras(dataSend);
+                    startActivity(intent);
+                    finish();
+                }
             }
             @Override
             public void onFinish() {
