@@ -83,6 +83,9 @@ public class LoginActivity extends AppCompatActivity {
 //                                                intent.putExtras(dataSend);
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                 startActivity(intent);
+                                                email.setText(null);
+                                                password.setText(null);
+                                                finish();
                                             }
 
                                             @Override

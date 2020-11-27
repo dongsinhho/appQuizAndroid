@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener{
@@ -46,6 +47,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         tvCountDown = findViewById(R.id.countdown);
         tvQuestion = findViewById(R.id.question);
         tvthisQuestion = findViewById(R.id.thisQuestion);
+        Collections.shuffle(Common.questionList);
 
         btA = findViewById(R.id.answerA);
         btB = findViewById(R.id.answerB);

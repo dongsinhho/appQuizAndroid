@@ -67,9 +67,9 @@ public class Startplay extends AppCompatActivity {
                             //int check = Integer.parseInt(ques.levelId);
                             if(Integer.parseInt(ques.levelId) == Integer.parseInt(modeId))
                                 Common.questionList.add(ques);
+
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -97,7 +97,7 @@ public class Startplay extends AppCompatActivity {
                 Intent intent = new Intent(Startplay.this, PlayActivity.class);
                 startActivity(intent);
                 countDownTimer.cancel();
-                //finish();
+                finish();
             }
         }.start();
     }

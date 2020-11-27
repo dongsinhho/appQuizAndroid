@@ -56,4 +56,13 @@ public class User {
     public void setScores(int scores) {
         this.scores = scores;
     }
+
+    public void deleteUser()
+    {
+        this.username = null;
+        this.fullname = null;
+        this.facebook = null;
+        this.scores = 0;
+        this.id = null;
+    }
 }

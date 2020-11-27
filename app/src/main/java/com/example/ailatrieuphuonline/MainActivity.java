@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference users;
     FirebaseUser firebaseUser;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = FirebaseDatabase.getInstance();
+        auth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idCurrentUser = firebaseUser.getUid();
         users = database.getReference("Users");
@@ -54,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                         Common.user = user.getValue(User.class);
 //                    Common.user();
 //                    User user = Common.user;
-                        String check = Common.user.getFullname();
-                        Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
+                       // String check = Common.user.getFullname();
+                       // Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
                     }
                 }
             }
@@ -63,10 +65,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //Toast.makeText(MainActivity.this, "Lỗi không thể get được user", Toast.LENGTH_SHORT).show();
-                Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
+               // Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
             }
         });
-//        String id, String username, String email, String facebooklink, int score
 
 
         btPlay.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,11 @@ public class MainActivity extends AppCompatActivity {
         btSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                auth.signOut();
+                Common.user.deleteUser();
+                finish();
             }
         });
     }
