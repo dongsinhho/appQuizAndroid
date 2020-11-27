@@ -48,7 +48,7 @@ public class Startplay extends AppCompatActivity {
 
     }
 
-    private void loadQuestion(String modeId) {
+    private void loadQuestion(final String modeId) {
 
         //clear list if have old question
         if (Common.questionList.size() > 0)
@@ -65,7 +65,8 @@ public class Startplay extends AppCompatActivity {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             Question ques = postSnapshot.getValue(Question.class);
                             //int check = Integer.parseInt(ques.levelId);
-                            Common.questionList.add(ques);
+                            if(Integer.parseInt(ques.levelId) == Integer.parseInt(modeId))
+                                Common.questionList.add(ques);
                         }
                     }
 
