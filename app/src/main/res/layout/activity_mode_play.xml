@@ -13,25 +13,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:hint="HARD"
+        android:hint="ĐỐ VUI - DÂN GIAN"
         android:layout_marginTop="15dp"
-        android:id="@+id/hard"
+        android:id="@+id/dovuidangian"
         android:padding="10dp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:hint="NORMAL"
+        android:hint="THỂ THAO"
         android:layout_marginTop="15dp"
-        android:id="@+id/normal"
+        android:id="@+id/thethao"
         android:padding="10dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:hint="EASY"
+        android:hint="KHOA HỌC TỰ NHIÊN"
         android:layout_marginTop="15dp"
-        android:id="@+id/easy"
+        android:id="@+id/khoahoctunhien"
+        android:padding="10dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:hint="KHOA HỌC XÃ HỘI"
+        android:layout_marginTop="15dp"
+        android:id="@+id/khoahocxahoi"
+        android:padding="10dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:hint="KIẾN THỨC CHUNG"
+        android:layout_marginTop="15dp"
+        android:id="@+id/ktchung"
         android:padding="10dp"/>
 
 </LinearLayout>

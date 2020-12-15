@@ -1,6 +1,5 @@
 package com.example.ailatrieuphuonline;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,19 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Collections;
 
 public class ModePlayActivity extends AppCompatActivity {
 
-    Button btHard;
-    Button btNormal;
-    Button btEasy;
+    Button btDvdg;
+    Button btThethao;
+    Button btKHTN, btKHXH, btKTChung;
     FirebaseDatabase database;
     DatabaseReference questions;
 
@@ -33,24 +27,26 @@ public class ModePlayActivity extends AppCompatActivity {
         questions = database.getReference("Questions");
 
 //        loadQuestion(Common.modeId);
-        btHard = findViewById(R.id.hard);
-        btNormal = findViewById(R.id.normal);
-        btEasy = findViewById(R.id.easy);
+        btDvdg = findViewById(R.id.dovuidangian);
+        btThethao = findViewById(R.id.thethao);
+        btKHTN = findViewById(R.id.khoahoctunhien);
+        btKHXH = findViewById(R.id.khoahocxahoi);
+        btKTChung = findViewById(R.id.ktchung);
 
 //        loadQuestion(Common.modeId);
-        btHard.setOnClickListener(new View.OnClickListener() {
+        btDvdg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "hard";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putString("numbermodeplay", "3");
+                dataSend.putString("numbermodeplay", "1");
                 intent.putExtras(dataSend);
                 startActivity(intent);
                 finish();
             }
         });
-        btNormal.setOnClickListener(new View.OnClickListener() {
+        btThethao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "normal";
@@ -62,13 +58,37 @@ public class ModePlayActivity extends AppCompatActivity {
                 finish();
             }
         });
-        btEasy.setOnClickListener(new View.OnClickListener() {
+        btKHTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "easy";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putString("numbermodeplay", "1");
+                dataSend.putString("numbermodeplay", "3");
+                intent.putExtras(dataSend);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btKHXH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Common.modeId = "easy";
+                Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
+                Bundle dataSend = new Bundle();
+                dataSend.putString("numbermodeplay", "4");
+                intent.putExtras(dataSend);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btKTChung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Common.modeId = "easy";
+                Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
+                Bundle dataSend = new Bundle();
+                dataSend.putString("numbermodeplay", "5");
                 intent.putExtras(dataSend);
                 startActivity(intent);
                 finish();
