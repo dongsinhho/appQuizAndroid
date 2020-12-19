@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 public class RankingActivity extends AppCompatActivity {
@@ -110,13 +111,27 @@ public class RankingActivity extends AppCompatActivity {
 
 
         for (int i = 0; i < Common.questionScore.size(); i++) {
-            Log.d(Common.questionScore.get(i).getQuestion_Score(), "Sinh" + Common.questionScore.size());
+            //Log.d(Common.questionScore.get(i).getQuestion_Score(), "Sinh" + Common.questionScore.size());
             if (Common.questionScore.get(i).getQuestion_Score() == "null")
                 Common.questionScore.get(i).setScore("0");
             if (Integer.parseInt(Common.questionScore.get(i).getQuestion_Score()) == getArguments().getInt(keyFragment)) {
                 arrayList.add(Common.questionScore.get(i));
             }
         }
+        Collections.sort(arrayList, new Comparator<QuestionScore>() {
+            @Override
+            public int compare(QuestionScore o1, QuestionScore o2) {
+                if (Integer.parseInt(o1.getScore()) < Integer.parseInt(o2.getScore())) {
+                    return 1;
+                } else {
+                    if (Integer.parseInt(o1.getScore()) == Integer.parseInt(o2.getScore())) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                }
+            }
+        });
         arrayAdapter.notifyDataSetChanged();
 
         return view;
