@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public class Done extends AppCompatActivity {
@@ -53,9 +54,10 @@ public class Done extends AppCompatActivity {
             tvScorce.setText(String.format("SCORCE : %d", score));
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
+            //Query post = question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId));
             //upload score to database
             question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId))
-                    .setValue(new QuestionScore(String.format("%s_%s", Common.user.getUsername(), Common.modeId), Common.user.getUsername(),
+                    .setValue(new QuestionScore(Common.modeId, Common.user.getUsername(),
                             String.valueOf(score)));
 
             //FirebaseDatabase.getInstance().getReference("Users").updateChildren("scores", Common.user.getScores()+score);

@@ -11,11 +11,9 @@
     android:paddingTop="10dp"
     tools:context=".RankingActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hồ Ngọc Đông Sinh"
-        android:textSize="100sp"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvRanking"/>
 
 </RelativeLayout>

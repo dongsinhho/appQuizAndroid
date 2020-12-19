@@ -15,16 +15,16 @@ public class ModePlayActivity extends AppCompatActivity {
     Button btDvdg;
     Button btThethao;
     Button btKHTN, btKHXH, btKTChung;
-    FirebaseDatabase database;
-    DatabaseReference questions;
+    //FirebaseDatabase database;
+    //DatabaseReference questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_play);
 
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
+        //database = FirebaseDatabase.getInstance();
+        //questions = database.getReference("Questions");
 
 //        loadQuestion(Common.modeId);
         btDvdg = findViewById(R.id.dovuidangian);

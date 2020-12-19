@@ -1,11 +1,11 @@
 package com.example.ailatrieuphuonline;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Color;
@@ -14,16 +14,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class RankingActivity extends AppCompatActivity {
 
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    FirebaseDatabase database;
+    DatabaseReference Question_Scorce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +48,51 @@ public class RankingActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        //mViewPager.setOffscreenPageLimit(5);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        database = FirebaseDatabase.getInstance();
+        Question_Scorce = database.getReference("Question_Scorce");
+
+        Question_Scorce.orderByChild("question_Score")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            QuestionScore questionScore = postSnapshot.getValue(QuestionScore.class);
+                            //int check = Integer.parseInt(ques.levelId);
+                            Common.questionScore.add(questionScore);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
     }
 
     public static class PlaceholderFragment extends Fragment {
 
-        private static final String KEY_COLOR = "key_color";
+        private static final String keyFragment = "key_Fragment";
+        ListView listView;
+        ArrayList<QuestionScore> arrayList;
+        QuestionScoreAdapter arrayAdapter;
 
         public PlaceholderFragment() {
         }
 
-        public static PlaceholderFragment newInstance(int color) {
+        @Override
+        public void onSaveInstanceState(@NonNull Bundle outState) {
+            super.onSaveInstanceState(outState);
+        }
+
+        public static PlaceholderFragment newInstance(int value) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(KEY_COLOR, color);
+            args.putInt(keyFragment, value);
             fragment.setArguments(args);
             return fragment;
         }
@@ -62,29 +102,25 @@ public class RankingActivity extends AppCompatActivity {
             View view = inflater.inflate(R.layout.activity_ranking_fragment, container, false);
             RelativeLayout relativeLayout = view.findViewById(R.id.rl_fragment);
 
-            switch (getArguments().getInt(KEY_COLOR)) {
-                case 1:
-                    relativeLayout.setBackgroundColor(Color.GREEN);
-                    break;
-                case 2:
-                    relativeLayout.setBackgroundColor(Color.RED);
-                    break;
-                case 3:
-                    relativeLayout.setBackgroundColor(Color.YELLOW);
-                    break;
-                case 4:
-                    relativeLayout.setBackgroundColor(Color.DKGRAY);
-                    break;
-                case 5:
-                    relativeLayout.setBackgroundColor(Color.BLUE);
-                    break;
-                default:
-                    relativeLayout.setBackgroundColor(Color.CYAN);
-                    break;
+
+            listView = view.findViewById(R.id.lvRanking);
+            arrayList= new ArrayList<QuestionScore>();
+            arrayAdapter = new QuestionScoreAdapter(getActivity(), android.R.layout.simple_list_item_1, arrayList);
+            listView.setAdapter(arrayAdapter);
+
+
+        for (int i = 0; i < Common.questionScore.size(); i++) {
+            Log.d(Common.questionScore.get(i).getQuestion_Score(), "Sinh" + Common.questionScore.size());
+            if (Common.questionScore.get(i).getQuestion_Score() == "null")
+                Common.questionScore.get(i).setScore("0");
+            if (Integer.parseInt(Common.questionScore.get(i).getQuestion_Score()) == getArguments().getInt(keyFragment)) {
+                arrayList.add(Common.questionScore.get(i));
             }
-            TextView textView = (TextView) view.findViewById(R.id.section_label);
-            textView.setText("List View");
-            return view;
+        }
+        arrayAdapter.notifyDataSetChanged();
+
+        return view;
+
         }
     }
 
@@ -100,6 +136,7 @@ public class RankingActivity extends AppCompatActivity {
             return PlaceholderFragment.newInstance(position + 1);
 
         }
+
 
         @Override
         public int getCount() {
