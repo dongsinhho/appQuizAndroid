@@ -38,7 +38,7 @@ public class Done extends AppCompatActivity {
         btTryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Done.this, MainActivity.class);
+                Intent intent = new Intent(Done.this, ModePlayActivity.class);
                 startActivity(intent);
                 finish();
             }

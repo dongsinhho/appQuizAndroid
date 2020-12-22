@@ -112,11 +112,15 @@ public class RankingActivity extends AppCompatActivity {
 
         for (int i = 0; i < Common.questionScore.size(); i++) {
             //Log.d(Common.questionScore.get(i).getQuestion_Score(), "Sinh" + Common.questionScore.size());
-            if (Common.questionScore.get(i).getQuestion_Score() == "null")
-                Common.questionScore.get(i).setScore("0");
-            if (Integer.parseInt(Common.questionScore.get(i).getQuestion_Score()) == getArguments().getInt(keyFragment)) {
-                arrayList.add(Common.questionScore.get(i));
+            if (Common.questionScore.get(i).getQuestion_Score().equals("1") || Common.questionScore.get(i).getQuestion_Score().equals("2")||Common.questionScore.get(i).getQuestion_Score().equals("3")
+            ||Common.questionScore.get(i).getQuestion_Score().equals("4")||Common.questionScore.get(i).getQuestion_Score().equals("5"))
+            {
+
+                if ( Integer.parseInt(Common.questionScore.get(i).getQuestion_Score())== getArguments().getInt(keyFragment)) {
+                    arrayList.add(Common.questionScore.get(i));
+                }
             }
+
         }
         Collections.sort(arrayList, new Comparator<QuestionScore>() {
             @Override

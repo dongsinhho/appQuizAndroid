@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         btSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, StartActivity.class);
                 startActivity(intent);
                 auth.signOut();
                 Common.user.deleteUser();
