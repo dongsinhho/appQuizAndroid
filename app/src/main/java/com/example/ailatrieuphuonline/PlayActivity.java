@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PlayActivity extends AppCompatActivity implements View.OnClickListener{
+public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000; // 1 sec
     final static long TIMEOUT = 15000; // 15 sec
@@ -32,7 +32,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 //    FirebaseDatabase database;
 //    DatabaseReference question;
 
-    Button btA,btB,btC,btD;
+    Button btA, btB, btC, btD;
     TextView tvScorce, tvCountDown, tvQuestion, tvthisQuestion;
 
     @Override
@@ -55,7 +55,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         btD = findViewById(R.id.answerD);
 
 
-
 //        Bundle extra = getIntent().getExtras();
 //        if(extra != null) {
 //            modeplay = extra.getInt("numbermodeplay");
@@ -76,9 +75,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         mCountDown.cancel();
         timeValue = 0;
         tvCountDown.setText(timeValue + "");
-        if (index < totalQuestion){  //vẫn còn câu hỏi trong danh sách
-            Button clickedButton = (Button)v;
-            if (clickedButton.getText().equals(Common.questionList.get(index).correctAnswer)){
+        if (index < totalQuestion) {  //vẫn còn câu hỏi trong danh sách
+            Button clickedButton = (Button) v;
+            if (clickedButton.getText().equals(Common.questionList.get(index).correctAnswer)) {
 //                switch (Integer.parseInt(Common.questionList.get(index).levelId)) {
 //                    case 01: { score += 10; break; }
 //                    case 02: { score += 20; break; }
@@ -90,7 +89,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 showQuestion(++index);
             } else {
                 //sai
-                Intent intent = new Intent(PlayActivity.this, Done.class );
+                Intent intent = new Intent(PlayActivity.this, Done.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("SCORE", score);
                 dataSend.putInt("TOTAL", totalQuestion);
@@ -104,9 +103,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showQuestion(int index) {
-        if(index<totalQuestion){
+        if (index < totalQuestion) {
             thisQuestion++;
-            tvthisQuestion.setText(String.format("%d/%d", thisQuestion,totalQuestion));
+            tvthisQuestion.setText(String.format("%d/%d", thisQuestion, totalQuestion));
             tvCountDown.setText("0");
 
             tvQuestion.setText(Common.questionList.get(index).getTextQuestion());
@@ -115,8 +114,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             btC.setText(Common.questionList.get(index).getAnswerC());
             btD.setText(Common.questionList.get(index).getAnswerD());
             mCountDown.start();
-        }else {
-            Intent intent = new Intent(PlayActivity.this, Done.class );
+        } else {
+            Intent intent = new Intent(PlayActivity.this, Done.class);
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
             dataSend.putInt("TOTAL", totalQuestion);
@@ -131,14 +130,14 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         totalQuestion = Common.questionList.size();
-        mCountDown = new CountDownTimer(TIMEOUT,INTERVAL) {
+        mCountDown = new CountDownTimer(TIMEOUT, INTERVAL) {
             @Override
             public void onTick(long minis) {
                 timeValue++;
-                tvCountDown.setText(timeValue+"");
+                tvCountDown.setText(timeValue + "");
                 Log.e("check", "savedInstanceState is null");
                 if (timeValue == 16) {
-                    Intent intent = new Intent(PlayActivity.this, Done.class );
+                    Intent intent = new Intent(PlayActivity.this, Done.class);
                     Bundle dataSend = new Bundle();
                     dataSend.putInt("SCORE", score);
                     dataSend.putInt("TOTAL", totalQuestion);
@@ -148,18 +147,19 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
                 }
             }
+
             @Override
             public void onFinish() {
                 mCountDown.cancel();
-              //  showQuestion(++index);
-                    Intent intent = new Intent(PlayActivity.this, Done.class );
-                    Bundle dataSend = new Bundle();
-                    dataSend.putInt("SCORE", score);
-                    dataSend.putInt("TOTAL", totalQuestion);
-                    dataSend.putInt("CORRECT", correctAnswer);
-                    intent.putExtras(dataSend);
-                    startActivity(intent);
-                    finish();
+                //  showQuestion(++index);
+                Intent intent = new Intent(PlayActivity.this, Done.class);
+                Bundle dataSend = new Bundle();
+                dataSend.putInt("SCORE", score);
+                dataSend.putInt("TOTAL", totalQuestion);
+                dataSend.putInt("CORRECT", correctAnswer);
+                intent.putExtras(dataSend);
+                startActivity(intent);
+                finish();
             }
         };
         showQuestion(index);

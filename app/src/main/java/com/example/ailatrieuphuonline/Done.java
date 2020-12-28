@@ -50,7 +50,7 @@ public class Done extends AppCompatActivity {
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer = extra.getInt("CORRECT");
 
-            tvScorce.setText(String.format("SCORCE : %d", score));
+            tvScorce.setText(String.format("SCORE : %d", score));
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
             //upload score to database

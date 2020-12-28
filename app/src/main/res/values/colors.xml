@@ -3,4 +3,9 @@
     <color name="colorPrimary">#2d2f3c</color>
     <color name="colorPrimaryDark">#030516</color>
     <color name="colorAccent">#565866</color>
+    <color name="colorEditTextBorder">#E9EBEF</color>
+    <color name="colorEditTextBg">#f2f5fa</color>
+    <color name="colorText">#18206F</color>
+    <color name="colorTextButton">#FFFFFF</color>
+    <color name="colorBack">#000000</color>
 </resources>

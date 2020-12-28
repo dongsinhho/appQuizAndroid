@@ -1,76 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlayActivity">
-    <Button
-        android:id="@+id/answerD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Answer D"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="15dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answerC"
-        android:layout_above="@+id/answerD"
-        android:text="Answer C"
-        android:layout_marginHorizontal="10dp" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answerB"
-        android:layout_above="@+id/answerC"
-        android:text="Answer B"
-        android:layout_marginHorizontal="10dp" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answerA"
-        android:layout_above="@+id/answerB"
-        android:text="Answer A"
-        android:layout_marginHorizontal="10dp" />
-    <TextView
-        android:id="@+id/countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15"
-        android:textSize="20dp"
-        android:gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"/>
-    <TextView
-        android:id="@+id/thisQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:textSize="20dp"
-        android:gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="20dp"
-        android:layout_margin="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/countdown"
-        android:text="THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION"
-        android:textSize="20dp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="#0e73d1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:text="Question"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/thisQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0e73d1"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_question"
+            android:paddingLeft="16dp"
+            android:paddingTop="20dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="20dp"
+            android:text="THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION THIS IS QUESTION"
+            android:textAlignment="center"
+            android:textColor="@color/colorBack"
+            android:textSize="16dp"></TextView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0e73d1"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintTop_toBottomOf="@id/linear2"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="15"
+            android:layout_marginRight="14dp"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/countdown"
+            android:text="00:"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="4dp"
+            android:text="Score"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv1"
+            android:text="0"
+            android:textColor="@color/colorTextButton"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear3"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/answerA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/answerB"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_answer"
+            android:backgroundTint="#989898"
+            android:text="Answer A"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/answerB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/answerC"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_answer"
+            android:backgroundTint="#989898"
+            android:text="Answer B"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/answerC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/answerD"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_answer"
+            android:backgroundTint="#989898"
+            android:text="Answer C"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/answerD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_answer"
+            android:backgroundTint="#989898"
+            android:text="Answer D"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
