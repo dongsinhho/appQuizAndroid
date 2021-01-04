@@ -15,7 +15,7 @@ import com.google.firebase.database.Query;
 
 public class Done extends AppCompatActivity {
 
-    Button btTryAgain;
+    Button btTryAgain, btOut;
     TextView tvScorce,tvCorrect;
 
     FirebaseDatabase database;
@@ -34,11 +34,20 @@ public class Done extends AppCompatActivity {
         tvCorrect = findViewById(R.id.tvCorrect);
         tvScorce = findViewById(R.id.tvScore);
         btTryAgain = findViewById(R.id.btTryAgain);
+        btOut = findViewById(R.id.btOut);
 
         btTryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Done.this, ModePlayActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Done.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

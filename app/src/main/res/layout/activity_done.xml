@@ -39,6 +39,13 @@
         android:id="@+id/btTryAgain"
         android:text="TRY AGAIN"
         android:layout_margin="20sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:id="@+id/btOut"
+        android:text="THOÁT"
+        android:layout_marginHorizontal="20dp"/>
 
 
 
