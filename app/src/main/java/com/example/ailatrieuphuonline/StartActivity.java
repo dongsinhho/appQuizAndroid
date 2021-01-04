@@ -14,12 +14,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button login, register;
+    Button login;
 
     FirebaseUser firebaseUser;
 //    FirebaseDatabase users;
 
-  //  @Override
+    //  @Override
 //    protected void onStart() {
 //        super.onStart();
 //// chưa xong
@@ -43,7 +43,6 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +50,5 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, LoginActivity.class));
             }
         });
-
-//        register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(StartActivity.this, RegisterActivity.class));
-//            }
-//        });
-
     }
 }

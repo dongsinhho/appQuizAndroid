@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="GET START"
         android:textColor="@color/colorTextButton"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
