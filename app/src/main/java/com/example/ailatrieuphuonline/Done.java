@@ -60,7 +60,7 @@ public class Done extends AppCompatActivity {
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer = extra.getInt("CORRECT");
 
-            tvScorce.setText(String.format("SCORCE : %d", score));
+            tvScorce.setText(String.format("SCORE : %d", score));
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
             //Query post = question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId));

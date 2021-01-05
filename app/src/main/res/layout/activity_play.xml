@@ -57,6 +57,7 @@
             android:textAlignment="center"
             android:textColor="@color/colorBack"
             android:textSize="16dp"/>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -177,3 +178,4 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

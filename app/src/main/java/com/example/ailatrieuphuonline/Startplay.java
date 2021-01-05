@@ -36,10 +36,10 @@ public class Startplay extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         questions = database.getReference("Questions");
         tvCount = findViewById(R.id.tvCount);
-        tvCount.setText(count+"");
+        tvCount.setText(count + "");
 
         Bundle extra = getIntent().getExtras();
-        if(extra != null) {
+        if (extra != null) {
             Common.modeId = extra.getString("numbermodeplay");
         }
 //        switch (modeplay) {
@@ -67,10 +67,11 @@ public class Startplay extends AppCompatActivity {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             Question ques = postSnapshot.getValue(Question.class);
                             //int check = Integer.parseInt(ques.levelId);
-                            if(Integer.parseInt(ques.levelId) == Integer.parseInt(modeId))
+                            if (Integer.parseInt(ques.levelId) == Integer.parseInt(modeId))
                                 Common.questionList.add(ques);
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
 
+
     android:background="@drawable/bg_header"
+
     tools:context=".MainActivity">
 
     <Button
@@ -19,6 +20,7 @@
         android:textColorHint="@color/colorAccent"
         android:textSize="25sp" />
 
+
     <Button
         android:id="@+id/Ranking"
         android:layout_width="250dp"
@@ -29,6 +31,7 @@
         android:textColorHint="@color/colorAccent"
         android:textSize="25sp" />
 
+
     <Button
         android:id="@+id/signout"
         android:layout_width="250dp"
@@ -38,6 +41,7 @@
         android:layout_marginTop="30dp"
         android:textColorHint="@color/colorAccent"
         android:textSize="25sp" />
+
 
 
 
