@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +26,7 @@ public class Startplay extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference questions;
     private TextView tvCount;
-    private int count = 4;
+    private int count = 4; //thời gian đếm ngược trước khi bắt đầu game
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,10 @@ public class Startplay extends AppCompatActivity {
 //            case 2: { Common.questionList = Common.questionListNormal; break; }
 //            case 3: { Common.questionList = Common.questionListHard; break; }
 //        }
-        loadQuestion(Common.modeId);
+        if (Common.OnlineNetwork)
+            loadQuestion(Common.modeId);
+        else
+            loadQuestion(Common.modeId);
 
     }
 
@@ -54,11 +59,7 @@ public class Startplay extends AppCompatActivity {
         //clear list if have old question
         if (Common.questionList.size() > 0)
             Common.questionList.clear();
-//        Collections.shuffle(Common.questionListEasy);
-//        Collections.shuffle(Common.questionListNormal);
-//        Collections.shuffle(Common.questionListHard);
-        //questions.orderByChild("levelId").equalTo(modeId)
-        //questions.child("levelId").orderByValue().equalTo(modeId)
+
         questions.orderByChild("levelId")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -75,7 +76,8 @@ public class Startplay extends AppCompatActivity {
 
                     }
                 });
-        Collections.shuffle(Common.questionList); //random
+        Collections.shuffle(Common.questionList); //random question
+
     }
 
     @Override
@@ -88,7 +90,7 @@ public class Startplay extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 // TODO Auto-generated method stub
                 count--;
-                tvCount.setText(count + "");
+                tvCount.setText(count+"");
             }
 
             @Override

@@ -62,9 +62,11 @@ public class StartActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog,int id) {
                             if (isOnline())
                                 Toast.makeText(getApplicationContext(), "Kết nối thành công", Toast.LENGTH_LONG).show();
+
                             else
                             {
-                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(), "Kết nối thất bại, sử dụng dữ liệu cũ", Toast.LENGTH_LONG).show();
+                                Common.OnlineNetwork = false;
                                 System.exit(0);
                             }
                         }
@@ -80,7 +82,7 @@ public class StartActivity extends AppCompatActivity {
             alertDialog.show();
         }
         login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
+        //register = findViewById(R.id.register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,16 +91,16 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this, RegisterActivity.class));
-            }
-        });
+//        register.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(StartActivity.this, RegisterActivity.class));
+//            }
+//        });
 
     }
 
-
+    //Hàm kiểm tra kết nối internet của thiết bị
     private Boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();

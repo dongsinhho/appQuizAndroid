@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference users;
     FirebaseUser firebaseUser;
     FirebaseAuth auth;
-    private MediaPlayer mediaPlayer;
-    private Thread thread;
+    public MediaPlayer mediaPlayer;
+    Thread thread;
 
 
     @Override
@@ -39,21 +39,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         registerAlarm();
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idCurrentUser = firebaseUser.getUid();
         users = database.getReference("Users");
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.original);
-                mediaPlayer.setLooping(true);
-                mediaPlayer.start();
-            }
-        });
-        thread.start();
+            thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.original);
+                    mediaPlayer.setLooping(true);
+                    mediaPlayer.start();
+                }
+            });
+            thread.start();
 
         Button btPlay = findViewById(R.id.Play);
         Button btRanking = findViewById(R.id.Ranking);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         btPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerAlarm() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,18);
-        calendar.set(Calendar.MINUTE,34);
+        calendar.set(Calendar.HOUR_OF_DAY,7);
+        calendar.set(Calendar.MINUTE,33);
         calendar.set(Calendar.SECOND,0);
 
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);

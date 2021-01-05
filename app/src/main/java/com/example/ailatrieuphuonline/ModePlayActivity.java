@@ -1,6 +1,7 @@
 package com.example.ailatrieuphuonline;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ModePlayActivity extends AppCompatActivity {
 
-    Button btDvdg;
-    Button btThethao;
-    Button btKHTN, btKHXH, btKTChung;
+    CardView btKHTN, btKHXH, btKTChung, btDvdg, btThethao;
     //FirebaseDatabase database;
     //DatabaseReference questions;
 
