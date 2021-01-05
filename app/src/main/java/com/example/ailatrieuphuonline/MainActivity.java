@@ -10,7 +10,10 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     public MediaPlayer mediaPlayer;
     Thread thread;
+
 
 
     @Override
@@ -56,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
             });
             thread.start();
 
-        Button btPlay = findViewById(R.id.Play);
+        final Button btPlay = findViewById(R.id.Play);
         Button btRanking = findViewById(R.id.Ranking);
         Button btSignout = findViewById(R.id.signout);
+
 
 //        Bundle extra = getIntent().getExtras();
 //        if(extra != null) {
@@ -76,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         Common.user = user.getValue(User.class);
 //                    Common.user();
 //                    User user = Common.user;
-                       // String check = Common.user.getFullname();
-                       // Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
+                        // String check = Common.user.getFullname();
+                        // Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
                     }
                 }
             }
@@ -85,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //Toast.makeText(MainActivity.this, "Lỗi không thể get được user", Toast.LENGTH_SHORT).show();
-               // Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
+                // Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
             }
         });
 
@@ -110,11 +115,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, StartActivity.class);
                 startActivity(intent);
-                auth.signOut();
-                Common.user.deleteUser();
-                finish();
+                //  auth.signOut();
+                //  Common.user.deleteUser();
+                //finish();
             }
         });
+
     }
 
     private void registerAlarm() {

@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button login, register;
+    Button login;
 
     FirebaseUser firebaseUser;
 //    FirebaseDatabase users;
@@ -45,6 +45,7 @@ public class StartActivity extends AppCompatActivity {
             finish();
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
