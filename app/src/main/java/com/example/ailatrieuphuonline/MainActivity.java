@@ -3,7 +3,11 @@ package com.example.ailatrieuphuonline;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,12 +25,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference users;
     FirebaseUser firebaseUser;
     FirebaseAuth auth;
+    public MediaPlayer mediaPlayer;
+    Thread thread;
+
 
 
     @Override
@@ -34,11 +43,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        registerAlarm();
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idCurrentUser = firebaseUser.getUid();
         users = database.getReference("Users");
+            thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.original);
+                    mediaPlayer.setLooping(true);
+                    mediaPlayer.start();
+                }
+            });
+            thread.start();
 
         final Button btPlay = findViewById(R.id.Play);
         Button btRanking = findViewById(R.id.Ranking);
@@ -52,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         Query post = database.getInstance().getReference().child("Users").orderByChild("id").equalTo(idCurrentUser);
 
-        post.addListenerForSingleValueEvent(new ValueEventListener() {
+        post.addListenerForSingleValueEvent(new ValueEventListener()  {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -73,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 // Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
             }
         });
+
 
 
         btPlay.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +121,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void registerAlarm() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,7);
+        calendar.set(Calendar.MINUTE,33);
+        calendar.set(Calendar.SECOND,0);
+
+        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)this.getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mediaPlayer.pause();
+        thread.interrupt();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (thread.isInterrupted())
+        {
+            thread.start();
+            mediaPlayer.start();
+        }
     }
 }

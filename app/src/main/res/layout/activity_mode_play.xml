@@ -130,7 +130,8 @@
                     android:text="Tự nhiên"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -157,7 +158,8 @@
                     android:layout_width="95dp"
                     android:layout_height="95dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/xahoi"></ImageView>
+                    android:src="@drawable/xahoi"/>
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -165,7 +167,8 @@
                     android:text="Xã hội"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -205,3 +208,4 @@
         </androidx.cardview.widget.CardView>
     </GridLayout>
 </LinearLayout>
+

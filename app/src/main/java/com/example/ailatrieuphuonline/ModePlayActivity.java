@@ -16,9 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ModePlayActivity extends AppCompatActivity {
 
-    CardView cvDvdg, cvThethao, cvKHTN, cvKHXH, cvKTChung;
-    FirebaseDatabase database;
-    DatabaseReference questions;
+
+    CardView btKHTN, btKHXH, btKTChung, btDvdg, btThethao;
+    //FirebaseDatabase database;
+    //DatabaseReference questions;
 
 
     @Override
@@ -26,8 +27,8 @@ public class ModePlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_play);
 
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
+        //database = FirebaseDatabase.getInstance();
+        //questions = database.getReference("Questions");
 
 //        loadQuestion(Common.modeId);
         cvDvdg = findViewById(R.id.dovuidangian);
@@ -99,50 +100,4 @@ public class ModePlayActivity extends AppCompatActivity {
         });
     }
 
-//    private void loadQuestion(String modeId) {
-//
-//        //clear list if have old question
-//        if (Common.questionListEasy.size()>0)
-//            Common.questionListEasy.clear();
-//        if (Common.questionListNormal.size()>0)
-//            Common.questionListNormal.clear();
-//        if (Common.questionListHard.size()>0)
-//            Common.questionListHard.clear();
-////        Collections.shuffle(Common.questionListEasy);
-////        Collections.shuffle(Common.questionListNormal);
-////        Collections.shuffle(Common.questionListHard);
-//        questions.orderByChild("modeId").equalTo(modeId)
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for(DataSnapshot postSnapshot : snapshot.getChildren())
-//                        {
-//                            Question ques = postSnapshot.getValue(Question.class);
-//                            int check = Integer.parseInt(ques.levelId);
-//                            switch (check) {
-//                                case 1: {
-//                                    Common.questionListEasy.add(ques);
-//                                    break;
-//                                }
-//                                case 2: {
-//                                    Common.questionListNormal.add(ques);
-//                                    break;
-//                                }
-//                                case 3: {
-//                                    Common.questionListHard.add(ques);
-//                                    break;
-//                                }
-//                            }
-//
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//        Collections.shuffle(Common.questionListEasy); //random
-//        Collections.shuffle(Common.questionListHard); //random
-//        Collections.shuffle(Common.questionListNormal); //random
-//    }
 }

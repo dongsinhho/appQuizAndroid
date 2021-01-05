@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/bg_main"
+
+
+    android:background="@drawable/bg_header"
+
     tools:context=".MainActivity">
 
     <Button
@@ -15,9 +17,9 @@
         android:layout_height="50dp"
         android:background="@drawable/button_bg_done"
         android:hint="Play"
-        android:textColorHint="#7528cc"
-        android:textSize="25sp"
-        android:textStyle="bold|italic" />
+        android:textColorHint="@color/colorAccent"
+        android:textSize="25sp" />
+
 
     <Button
         android:id="@+id/Ranking"
@@ -26,9 +28,9 @@
         android:background="@drawable/button_bg_done"
         android:hint="Ranking"
         android:layout_marginTop="30dp"
-        android:textColorHint="#7528cc"
-        android:textSize="25sp"
-        android:textStyle="bold|italic" />
+        android:textColorHint="@color/colorAccent"
+        android:textSize="25sp" />
+
 
     <Button
         android:id="@+id/signout"
@@ -37,8 +39,10 @@
         android:background="@drawable/button_bg_done"
         android:hint="Sign out"
         android:layout_marginTop="30dp"
-        android:textColorHint="#7528cc"
-        android:textSize="25sp"
-        android:textStyle="bold|italic" />
+        android:textColorHint="@color/colorAccent"
+        android:textSize="25sp" />
+
+
+
 
 </LinearLayout>

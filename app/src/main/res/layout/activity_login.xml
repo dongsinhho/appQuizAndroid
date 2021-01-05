@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login Now"
-            android:textColor="@color/colorText"></TextView>
+            android:textColor="@color/colorText"/>
+
 
         <EditText
             android:id="@+id/email"
@@ -32,9 +33,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
             android:hint="Email"
-            android:ems="10"
             android:layout_marginTop="32dp"
-            android:textSize="16sp"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -42,9 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:ems="10"
             android:layout_marginTop="16dp"
-            android:textSize="16sp"
             android:background="@drawable/edittext_background"
             android:inputType="textPassword" />
 
@@ -74,7 +71,8 @@
         android:src="@drawable/ic_wave_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"></ImageView>
+        tools:layout_editor_absoluteX="0dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

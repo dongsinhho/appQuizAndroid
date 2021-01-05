@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public class Done extends AppCompatActivity {
 
-    Button btTryAgain;
+    Button btTryAgain, btOut;
     TextView tvScorce,tvCorrect;
 
     FirebaseDatabase database;
@@ -33,8 +34,17 @@ public class Done extends AppCompatActivity {
         tvCorrect = findViewById(R.id.tvCorrect);
         tvScorce = findViewById(R.id.tvScore);
         btTryAgain = findViewById(R.id.btTryAgain);
+        btOut = findViewById(R.id.btOut);
 
         btTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Done.this, ModePlayActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Done.this, MainActivity.class);
@@ -53,9 +63,10 @@ public class Done extends AppCompatActivity {
             tvScorce.setText(String.format("SCORE : %d", score));
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
+            //Query post = question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId));
             //upload score to database
             question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId))
-                    .setValue(new QuestionScore(String.format("%s_%s", Common.user.getUsername(), Common.modeId), Common.user.getUsername(),
+                    .setValue(new QuestionScore(Common.modeId, Common.user.getUsername(),
                             String.valueOf(score)));
 
             //FirebaseDatabase.getInstance().getReference("Users").updateChildren("scores", Common.user.getScores()+score);

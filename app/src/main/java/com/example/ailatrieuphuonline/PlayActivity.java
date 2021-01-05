@@ -83,8 +83,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 //                    case 02: { score += 20; break; }
 //                    case 03: { score += 30; break; }
 //                }
-                int tempScore = Integer.parseInt(Common.modeId) * 10;
-                score += tempScore;
+//                int tempScore = Integer.parseInt(Common.modeId) * 10;
+                score += 10;
                 correctAnswer++;
                 showQuestion(++index);
             } else {

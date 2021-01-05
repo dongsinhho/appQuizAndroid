@@ -26,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stay Connected"
-            android:textColor="@color/colorText"></TextView>
+            android:textColor="@color/colorText"/>
+
 
         <EditText
             android:id="@+id/username"
@@ -97,7 +98,6 @@
         android:src="@drawable/ic_wave_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"></ImageView>
+        tools:layout_editor_absoluteX="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
