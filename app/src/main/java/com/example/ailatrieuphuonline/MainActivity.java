@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, StartActivity.class);
                 startActivity(intent);
-                //  auth.signOut();
-                //  Common.user.deleteUser();
-                //finish();
+                auth.signOut();
+                Common.user.deleteUser();
+                finish();
             }
         });
 
