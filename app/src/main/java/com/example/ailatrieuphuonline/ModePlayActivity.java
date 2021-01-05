@@ -5,10 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.firebase.database.DatabaseReference;
@@ -16,11 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ModePlayActivity extends AppCompatActivity {
 
-
     CardView btKHTN, btKHXH, btKTChung, btDvdg, btThethao;
     //FirebaseDatabase database;
     //DatabaseReference questions;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +26,14 @@ public class ModePlayActivity extends AppCompatActivity {
         //questions = database.getReference("Questions");
 
 //        loadQuestion(Common.modeId);
-        cvDvdg = findViewById(R.id.dovuidangian);
-        cvThethao = findViewById(R.id.thethao);
-        cvKHTN = findViewById(R.id.khoahoctunhien);
-        cvKHXH = findViewById(R.id.khoahocxahoi);
-        cvKTChung = findViewById(R.id.ktchung);
-        
+        btDvdg = findViewById(R.id.dovuidangian);
+        btThethao = findViewById(R.id.thethao);
+        btKHTN = findViewById(R.id.khoahoctunhien);
+        btKHXH = findViewById(R.id.khoahocxahoi);
+        btKTChung = findViewById(R.id.ktchung);
+
 //        loadQuestion(Common.modeId);
-        cvDvdg.setOnClickListener(new View.OnClickListener() {
+        btDvdg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "hard";
@@ -50,7 +45,7 @@ public class ModePlayActivity extends AppCompatActivity {
                 finish();
             }
         });
-        cvThethao.setOnClickListener(new View.OnClickListener() {
+        btThethao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "normal";
@@ -62,7 +57,7 @@ public class ModePlayActivity extends AppCompatActivity {
                 finish();
             }
         });
-        cvKHTN.setOnClickListener(new View.OnClickListener() {
+        btKHTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "easy";
@@ -74,7 +69,7 @@ public class ModePlayActivity extends AppCompatActivity {
                 finish();
             }
         });
-        cvKHXH.setOnClickListener(new View.OnClickListener() {
+        btKHXH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "easy";
@@ -86,7 +81,7 @@ public class ModePlayActivity extends AppCompatActivity {
                 finish();
             }
         });
-        cvKTChung.setOnClickListener(new View.OnClickListener() {
+        btKTChung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "easy";
