@@ -9,16 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Startplay"></activity>
-        <activity android:name=".Done" />
-        <activity android:name=".ModePlayActivity" />
-        <activity android:name=".RankingActivity" />
-        <activity android:name=".PlayActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Startplay"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Done"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ModePlayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RankingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PlayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity" />
-        <receiver android:name=".AlarmReceiver" />
-        <activity android:name=".StartActivity">
+        <receiver android:name=".AlarmReceiver"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StartActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

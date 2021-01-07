@@ -45,6 +45,7 @@ public class RankingActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("BẢNG XẾP HẠNG");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorTextButton));
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.container);

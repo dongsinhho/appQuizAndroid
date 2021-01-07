@@ -5,24 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FAA31B"
+    android:background="#2196F3"
     android:gravity="center_horizontal|center_vertical"
     tools:context=".Startplay">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/colorText"
-        android:text="Start play"
-        android:textSize="30sp"/>
+        android:textColor="@color/colorEditTextBorder"
+        android:text="ARE YOU READY?"
+        android:textSize="70sp"
+        android:gravity="center_horizontal"
+        android:textStyle="italic|bold"/>
     <TextView
         android:id="@+id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorEditTextBorder"
         style="@style/TextAppearance.AppCompat.Title"
         android:text="3"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:layout_margin="40dp"/>
 
 

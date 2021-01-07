@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:background="@drawable/background_shadow"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
         android:ellipsize="end"
+        android:gravity="center_horizontal|start"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:singleLine="true"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="18dp"/>
+        android:textColor="#71b8ff"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/item_score"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:singleLine="true" />
+        android:layout_weight="2"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="#409fff"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        tools:ignore="RtlCompat" />
 
 </LinearLayout>

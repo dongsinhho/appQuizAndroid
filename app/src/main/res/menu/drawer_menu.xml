@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_info1"
+            android:icon="@drawable/ic_baseline_emoji_events_24"
+            android:title="Điểm tổng" />
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/ic_baseline_arrow_back_24"
+            android:title="Đăng xuất" />
+    </group>
+    <item android:title="Contact">
+        <menu>
+            <item
+                android:icon="@drawable/ic_baseline_mail_24"
+                android:title="Email" />
+            <item
+                android:icon="@drawable/ic_baseline_local_phone_24"
+                android:title="Phone Number" />
+        </menu>
+    </item>
+
+
+</menu>

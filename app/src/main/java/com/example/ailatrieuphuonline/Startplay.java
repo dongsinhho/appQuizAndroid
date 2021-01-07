@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -26,12 +27,16 @@ public class Startplay extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference questions;
     private TextView tvCount;
+    private MediaPlayer player;
     private int count = 4; //thời gian đếm ngược trước khi bắt đầu game
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startplay);
+        player = MediaPlayer.create(this,R.raw.start);
+        player.start();
+
 
         database = FirebaseDatabase.getInstance();
         questions = database.getReference("Questions");
@@ -96,6 +101,7 @@ public class Startplay extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                player.stop();
                 // TODO Auto-generated method stub
                 Intent intent = new Intent(Startplay.this, PlayActivity.class);
                 startActivity(intent);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ModePlayActivity extends AppCompatActivity {
 
     CardView btKHTN, btKHXH, btKTChung, btDvdg, btThethao;
+    MediaPlayer mediaPlayer;
     //FirebaseDatabase database;
     //DatabaseReference questions;
 
@@ -21,6 +23,7 @@ public class ModePlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_play);
+        mediaPlayer = MediaPlayer.create(this, R.raw.click);
 
         //database = FirebaseDatabase.getInstance();
         //questions = database.getReference("Questions");
@@ -37,6 +40,7 @@ public class ModePlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Common.modeId = "hard";
+                mediaPlayer.start();
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putString("numbermodeplay", "1");
@@ -48,6 +52,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btThethao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 //Common.modeId = "normal";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
@@ -60,6 +65,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btKHTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 //Common.modeId = "easy";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
@@ -72,6 +78,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btKHXH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 //Common.modeId = "easy";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();
@@ -84,6 +91,7 @@ public class ModePlayActivity extends AppCompatActivity {
         btKTChung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 //Common.modeId = "easy";
                 Intent intent = new Intent(ModePlayActivity.this, Startplay.class);
                 Bundle dataSend = new Bundle();

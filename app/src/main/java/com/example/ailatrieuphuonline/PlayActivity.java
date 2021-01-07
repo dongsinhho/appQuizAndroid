@@ -3,6 +3,7 @@ package com.example.ailatrieuphuonline;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     final static long INTERVAL = 1000; // 1 sec
     final static long TIMEOUT = 15000; // 15 sec
     int timeValue = 0;
+    MediaPlayer player1;
 
     CountDownTimer mCountDown;
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
@@ -39,6 +41,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+        player1 = MediaPlayer.create(this,R.raw.onstart1);
+        player1.start();
+        player1.setLooping(true);
 //
 //        database = FirebaseDatabase.getInstance();
 //        question = database.getReference("Questions");
@@ -89,6 +94,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 showQuestion(++index);
             } else {
                 //sai
+                player1.stop();
+                player1.release();
                 Intent intent = new Intent(PlayActivity.this, Done.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("SCORE", score);
@@ -115,6 +122,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             btD.setText(Common.questionList.get(index).getAnswerD());
             mCountDown.start();
         } else {
+            player1.stop();
+            player1.release();
             Intent intent = new Intent(PlayActivity.this, Done.class);
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
@@ -152,6 +161,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             public void onFinish() {
                 mCountDown.cancel();
                 //  showQuestion(++index);
+                player1.stop();
+                player1.release();
                 Intent intent = new Intent(PlayActivity.this, Done.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("SCORE", score);

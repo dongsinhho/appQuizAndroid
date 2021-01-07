@@ -1,21 +1,27 @@
 package com.example.ailatrieuphuonline;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+//import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.SlidingDrawer;
+import android.widget.TextView;
+import android.widget.VideoView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     FirebaseDatabase database;
     DatabaseReference users;
@@ -35,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     public MediaPlayer mediaPlayer;
     Thread thread;
-
+    private DrawerLayout drawer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+       setContentView(R.layout.activity_main);
 
 
         registerAlarm();
@@ -50,19 +56,32 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String idCurrentUser = firebaseUser.getUid();
         users = database.getReference("Users");
-            thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.original);
-                    mediaPlayer.setLooping(true);
-                    mediaPlayer.start();
-                }
-            });
-            thread.start();
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.original);
+                mediaPlayer.setLooping(true);
+                mediaPlayer.start();
+            }
+        });
+        thread.start();
+
+
+
+        Toolbar toolbar = findViewById(R.id.tbNav);
+        toolbar.setTitle("Quiz Game");
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         final Button btPlay = findViewById(R.id.Play);
         Button btRanking = findViewById(R.id.Ranking);
-        Button btSignout = findViewById(R.id.signout);
 
 
 //        Bundle extra = getIntent().getExtras();
@@ -79,10 +98,6 @@ public class MainActivity extends AppCompatActivity {
                     for (DataSnapshot user : snapshot.getChildren()) {
                         // do something with the individual "user"
                         Common.user = user.getValue(User.class);
-//                    Common.user();
-//                    User user = Common.user;
-                        // String check = Common.user.getFullname();
-                        // Log.d("Hồ NGọc đông sinh "+ check, "Hồ Sinh");
                     }
                 }
             }
@@ -91,6 +106,30 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 //Toast.makeText(MainActivity.this, "Lỗi không thể get được user", Toast.LENGTH_SHORT).show();
                 // Log.d("Hồ NGọc đông sinh", "onAuthStateChanged:signed_out");
+            }
+        });
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                TextView tvUserName = findViewById(R.id.nav_username);
+                TextView tvUserMail = findViewById(R.id.nav_usermail);
+                tvUserMail.setText(Common.user.getUsername());
+                tvUserName.setText(Common.user.getFullname());
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
             }
         });
 
@@ -107,17 +146,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RankingActivity.class));
-            }
-        });
-
-        btSignout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StartActivity.class);
-                startActivity(intent);
-                auth.signOut();
-                Common.user.deleteUser();
-                finish();
             }
         });
 
@@ -150,5 +178,27 @@ public class MainActivity extends AppCompatActivity {
             thread.start();
             mediaPlayer.start();
         }
+    }
+    @Override
+    public void onBackPressed()
+    {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_signout) {
+            Intent intent = new Intent(MainActivity.this, StartActivity.class);
+            startActivity(intent);
+            auth.signOut();
+            Common.user.deleteUser();
+            finish();
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

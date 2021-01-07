@@ -3,6 +3,7 @@ package com.example.ailatrieuphuonline;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,9 @@ public class Done extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
+        final MediaPlayer player = MediaPlayer.create(this, R.raw.score);
+        final MediaPlayer player2 = MediaPlayer.create(this, R.raw.click);
+        player.start();
 
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Scorce");
@@ -39,6 +43,9 @@ public class Done extends AppCompatActivity {
         btTryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player.stop();
+                player.release();
+                player2.start();
                 Intent intent = new Intent(Done.this, ModePlayActivity.class);
                 startActivity(intent);
                 finish();
@@ -47,6 +54,7 @@ public class Done extends AppCompatActivity {
         btOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player2.start();
                 Intent intent = new Intent(Done.this, MainActivity.class);
                 startActivity(intent);
                 finish();
