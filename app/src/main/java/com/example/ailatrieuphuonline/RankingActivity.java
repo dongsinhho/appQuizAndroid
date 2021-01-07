@@ -138,9 +138,15 @@ public class RankingActivity extends AppCompatActivity {
             }
         });
         arrayAdapter.notifyDataSetChanged();
-
         return view;
 
+        }
+
+        @Override
+        public void onDestroy() {
+            arrayList.clear();
+            arrayAdapter.notifyDataSetChanged();
+            super.onDestroy();
         }
     }
 
@@ -181,4 +187,9 @@ public class RankingActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }
