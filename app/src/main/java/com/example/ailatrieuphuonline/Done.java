@@ -71,8 +71,6 @@ public class Done extends AppCompatActivity {
             tvScorce.setText(String.format("SCORE : %d", score));
             tvCorrect.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
-            //Query post = question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId));
-            //upload score to database
             question_score.child(String.format("%s_%s",Common.user.getUsername(),Common.modeId))
                     .setValue(new QuestionScore(Common.modeId, Common.user.getUsername(),
                             String.valueOf(score)));

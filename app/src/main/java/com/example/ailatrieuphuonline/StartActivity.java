@@ -24,23 +24,14 @@ public class StartActivity extends AppCompatActivity {
     Button login;
 
     FirebaseUser firebaseUser;
-//    FirebaseDatabase users;
-
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("Loi","loicmmm");
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-//            user(firebaseUser.getUid(),firebaseUser.getUserfirebaseUser.getEmail(),firebaseUser);
-// String id, String username, String email, String facebooklink, int score
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
-//            String userId = firebaseUser.getUid();
-//            Bundle dataSend = new Bundle();
-//            dataSend.putString("idUser", userId);
-//            intent.putExtras(dataSend);
             startActivity(intent);
             finish();
         }
@@ -91,13 +82,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, LoginActivity.class));
             }
         });
-
-//        register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(StartActivity.this, RegisterActivity.class));
-//            }
-//        });
 
     }
 

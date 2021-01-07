@@ -47,11 +47,7 @@ public class Startplay extends AppCompatActivity {
         if (extra != null) {
             Common.modeId = extra.getString("numbermodeplay");
         }
-//        switch (modeplay) {
-//            case 1: { Common.modeId = modeplay; break; }
-//            case 2: { Common.questionList = Common.questionListNormal; break; }
-//            case 3: { Common.questionList = Common.questionListHard; break; }
-//        }
+
         if (Common.OnlineNetwork)
             loadQuestion(Common.modeId);
         else

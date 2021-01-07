@@ -78,9 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                                                 pd.dismiss();
                                                 User login = dataSnapshot.child("Users").getValue(User.class);
                                                 Common.user = login;
-//                                                Bundle dataSend = new Bundle();
-//                                                dataSend.putString("SCORE", score);
-//                                                intent.putExtras(dataSend);
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                 startActivity(intent);
                                                 email.setText(null);

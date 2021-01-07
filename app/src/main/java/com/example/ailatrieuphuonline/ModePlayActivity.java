@@ -16,8 +16,6 @@ public class ModePlayActivity extends AppCompatActivity {
 
     CardView btKHTN, btKHXH, btKTChung, btDvdg, btThethao;
     MediaPlayer mediaPlayer;
-    //FirebaseDatabase database;
-    //DatabaseReference questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +23,6 @@ public class ModePlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mode_play);
         mediaPlayer = MediaPlayer.create(this, R.raw.click);
 
-        //database = FirebaseDatabase.getInstance();
-        //questions = database.getReference("Questions");
-
-//        loadQuestion(Common.modeId);
         btDvdg = findViewById(R.id.dovuidangian);
         btThethao = findViewById(R.id.thethao);
         btKHTN = findViewById(R.id.khoahoctunhien);

@@ -84,11 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Button btRanking = findViewById(R.id.Ranking);
 
 
-//        Bundle extra = getIntent().getExtras();
-//        if(extra != null) {
-//            String id = extra.getString("idUser");
-//        }
-
         Query post = database.getInstance().getReference().child("Users").orderByChild("id").equalTo(idCurrentUser);
 
         post.addListenerForSingleValueEvent(new ValueEventListener()  {
